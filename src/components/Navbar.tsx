@@ -14,11 +14,11 @@ export default function Navbar() {
     const getData = async () => {
       try {
         const categoryResponse = await fetch(
-          "https://api.api-store.workers.dev/api/bazardor/categories"
+          "https://api.abcz.workers.dev/api/bazardor/categories"
         );
 
         const productResponse = await fetch(
-          "https://api.api-store.workers.dev/api/bazardor/products"
+          "https://api.abcz.workers.dev/api/bazardor/products"
         );
 
         const categoryData = await categoryResponse.json();

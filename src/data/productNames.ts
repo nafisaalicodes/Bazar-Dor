@@ -40,10 +40,43 @@ export const productNames: Record<string, string> = {
   "মরিচ গুঁড়া": "Chili Powder",
   "ধনেপাতা গুঁড়া": "Coriander Powder",
 };
+export const categoryNames: Record<string, string> = {
+  চাল: "Rice",
+  ডাল: "Lentils",
+  তেল: "Oil",
+  সবজি: "Vegetables",
+  মাছ: "Fish",
+  মাংস: "Meat",
+  "ডিম-দুধ": "Eggs & Dairy",
+  মসলা: "Spices",
+};
 
 export const unitNames: Record<string, string> = {
   kg: "per kg",
   litre: "per liter",
   dozen: "per dozen",
   piece: "per piece",
+};
+export const marketNames: Record<string, string> = {
+  "কারওয়ান বাজার": "Karwan Bazar",
+  "গ্রীন মার্কেট, মিরপুর": "Green Market, Mirpur",
+  "চৌদগ্রাম বাজার": "Choudogram Bazar",
+  "আমতলী বাজার": "Amtoli Bazar",
+  "সদর বাজার": "Sadar Bazar",
+  "বাসারহাট বাজার": "Basarhat Bazar",
+  "মাঠ বাজার": "Math Bazar",
+  "চৌর বাজার": "Chour Bazar",
+  বাজারহাট: "Bazarhat",
+  "ডবলগেট বাজার": "Doublegate Bazar",
+  আমবাজার: "Ambazar",
+  "চৌরাস্তা বাজার": "Chowrasta Bazar",
+};
+
+export const divisionNames: Record<string, string> = {
+  ঢাকা: "Dhaka",
+  চট্টগ্রাম: "Chittagong",
+  রাজশাহী: "Rajshahi",
+  ময়মনসিংহ: "Mymensingh",
+  খুলনা: "Khulna",
+  সিলেট: "Sylhet",
 };

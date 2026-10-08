@@ -2,9 +2,10 @@ import ProductSection from "@/components/ProductSection";
 import type { Product } from "@/Types/product";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import Navbar from "@/components/Navbar";
 
 const API_URL =
-  "https://api.api-store.workers.dev/api/bazardor/products";
+  "https://api.abcz.workers.dev/api/bazardor/products";
 
 const HomePage = async () => {
   const response = await fetch(API_URL);
@@ -29,6 +30,7 @@ const HomePage = async () => {
 
   return (
     <main className="bg-[#f2f4f0]">
+      
       <Hero />
 
       <div className="mx-auto max-w-7xl px-4 md:px-6">
