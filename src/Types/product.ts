@@ -6,8 +6,11 @@ export interface Product {
   categoryNameBn: string;
   categoryIcon: string;
   unit: string;
+  price:number;
   image: string;
+  emoji:string;
   today: number;
+  name:string;
   yesterday: number;
   lastWeek: number;
   lastMonth: number;
