@@ -88,13 +88,13 @@ export default function SignInPage() {
           <div className="mb-7 text-center">
             <Link
               href="/"
-              className="text-3xl font-extrabold tracking-tight text-green-700"
+              className="text-3xl font-extrabold tracking-tight text-black-700"
             >
-              BazarDor
+              Sign In
             </Link>
 
-            <p className="mt-2 text-sm text-gray-600">
-              Sign in to continue to your BazarDor account.
+            <p className="mt-2 text-sm text-gray-500">
+               Sign in to view detailed prices, compare markets, and access your profile. 
             </p>
           </div>
 
