@@ -88,7 +88,7 @@ export default function SignInPage() {
           <div className="mb-7 text-center">
             <Link
               href="/"
-              className="text-3xl font-extrabold tracking-tight text-black-600"
+              className="text-3xl font-bold tracking-tight text-black-600"
             >
               Sign In
             </Link>
@@ -102,7 +102,7 @@ export default function SignInPage() {
             <div>
               <label
                 htmlFor="email"
-                className="mb-1.5 block text-sm font-medium text-gray-700"
+                className="mb-1.5 block font-bold text-sm font-medium text-gray-700"
               >
                 Email Address
               </label>
@@ -123,7 +123,7 @@ export default function SignInPage() {
             <div>
               <label
                 htmlFor="password"
-                className="mb-1.5 block text-sm font-medium text-gray-700"
+                className="mb-1.5 block font-bold text-sm font-medium text-gray-700"
               >
                 Password
               </label>
@@ -163,7 +163,7 @@ export default function SignInPage() {
               type="button"
               disabled={loading}
               onClick={() => handleSocialLogin("google")}
-              className="rounded-lg border border-gray-300 px-3 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-lg border border-gray-300 px-3 py-3 font-bold text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
             >
               Google
             </button>
@@ -172,7 +172,7 @@ export default function SignInPage() {
               type="button"
               disabled={loading}
               onClick={() => handleSocialLogin("github")}
-              className="rounded-lg border border-gray-300 px-3 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-lg border border-gray-300 font-bold px-3 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
             >
               GitHub
             </button>
