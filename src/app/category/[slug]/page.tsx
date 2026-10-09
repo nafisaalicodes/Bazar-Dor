@@ -1,4 +1,7 @@
+
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/Types/product";
 import Footer from "@/components/Footer";
@@ -15,12 +18,41 @@ interface CategoryPageProps {
   }>;
 }
 
+const validCategories = [
+  "chal",
+  "dal",
+  "tel",
+  "sobji",
+  "mach",
+  "mangsho",
+  "dim-dui",
+  "mosla",
+];
+
+const categoryNames: Record<string, string> = {
+  chal: "Rice",
+  dal: "Lentils",
+  tel: "Oil",
+  sobji: "Vegetables",
+  mach: "Fish",
+  mangsho: "Meat",
+  "dim-dui": "Egg-Milk",
+  mosla: "Spices",
+};
+
 const CategoryPage = async ({
   params,
   searchParams,
 }: CategoryPageProps) => {
   const { slug } = await params;
   const { sort } = await searchParams;
+
+  const categoryKey = slug.toLowerCase();
+
+  // Check whether the category exists
+  if (!validCategories.includes(categoryKey)) {
+    notFound();
+  }
 
   const response = await fetch(API_URL, {
     cache: "no-store",
@@ -34,12 +66,12 @@ const CategoryPage = async ({
 
   const products: Product[] = data.products || data;
 
-  const categoryKey = slug.toLowerCase();
-
+  // Filter products by category
   const categoryProducts = products.filter(
     (product) => product.category === categoryKey
   );
 
+  // Sort products by today's price
   const sortedProducts = [...categoryProducts];
 
   if (sort === "low") {
@@ -50,26 +82,13 @@ const CategoryPage = async ({
     sortedProducts.sort((a, b) => b.today - a.today);
   }
 
-  const categoryNames: Record<string, string> = {
-    chal: "Rice",
-    dal: "Lentils",
-    tel: "Oil",
-    sobji: "Vegetables",
-    mach: "Fish",
-    mangsho: "Meat",
-    "dim-dui": "Egg-Milk",
-    mosla: "Spices",
-  };
-
-  const categoryName =
-    categoryNames[categoryKey] || categoryKey;
+  const categoryName = categoryNames[categoryKey];
 
   return (
     <>
       <main className="min-h-screen bg-[#f2f4f0] px-4 py-8 md:px-12">
         <div className="mx-auto max-w-7xl">
-
-          {/* Header */}
+          {/* Category Header */}
           <div className="mb-6 flex items-center gap-5 rounded-2xl bg-white p-6 shadow-sm">
             <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[#f2f4f0] text-3xl">
               {categoryProducts[0]?.categoryIcon || "🛒"}
@@ -87,7 +106,7 @@ const CategoryPage = async ({
             </div>
           </div>
 
-          {/* Sort */}
+          {/* Sorting */}
           <div className="mb-6 flex flex-col gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
             <p className="text-sm text-gray-500">
               Showing total{" "}
@@ -99,7 +118,7 @@ const CategoryPage = async ({
 
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-sm font-medium text-gray-600">
-                Sort by
+                Sort by:
               </span>
 
               <div className="flex flex-wrap gap-2">
@@ -141,14 +160,23 @@ const CategoryPage = async ({
 
           {/* Products */}
           {categoryProducts.length === 0 ? (
-            <div className="rounded-2xl bg-white py-16 text-center shadow-sm">
-              <p className="text-lg font-semibold text-gray-800">
-                No products found
-              </p>
+            <div className="rounded-2xl border border-gray-200 bg-white px-6 py-16 text-center shadow-sm">
+              <div className="text-5xl">🔍</div>
+
+              <h2 className="mt-5 text-xl font-bold text-gray-900">
+                No Products Found
+              </h2>
 
               <p className="mt-2 text-sm text-gray-500">
                 No products are available in this category.
               </p>
+
+              <Link
+                href="/"
+                className="mt-6 inline-block rounded-lg bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700"
+              >
+                Go Back Home
+              </Link>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -160,7 +188,6 @@ const CategoryPage = async ({
               ))}
             </div>
           )}
-
         </div>
       </main>
 
@@ -170,3 +197,4 @@ const CategoryPage = async ({
 };
 
 export default CategoryPage;
+
