@@ -88,13 +88,13 @@ export default function SignInPage() {
           <div className="mb-7 text-center">
             <Link
               href="/"
-              className="text-3xl font-extrabold tracking-tight text-black-700"
+              className="text-3xl font-extrabold tracking-tight text-black-600"
             >
               Sign In
             </Link>
 
-            <p className="mt-2 text-sm text-gray-500">
-               Sign in to view detailed prices, compare markets, and access your profile. 
+            <p className="whitespace-nowrap mt-2 text-sm text-gray-500">
+               Sign in to view detailed prices, compare markets and access your profile. 
             </p>
           </div>
 
