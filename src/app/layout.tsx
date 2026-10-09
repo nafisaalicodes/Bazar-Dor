@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Bazar Dor",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <Providers>{children}</Providers>
+        <Toaster position="top-right" />
       </body>
     </html>
   );

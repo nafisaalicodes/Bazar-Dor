@@ -61,8 +61,8 @@ const ProductDetailsPage = async ({
 
   // 2. Redirect signed-out users to the sign-in page
   if (!session) {
-    redirect("/signin");
-  }
+  redirect("/signin?reason=auth-required");
+}
 
   // 3. Fetch product details after authentication
   let response: Response;
