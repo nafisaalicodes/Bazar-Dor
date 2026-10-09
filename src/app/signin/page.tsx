@@ -90,12 +90,8 @@ export default function SignInPage() {
               href="/"
               className="text-3xl font-extrabold tracking-tight text-green-700"
             >
-              🛒 BazarDor
+              BazarDor
             </Link>
-
-            <h1 className="mt-5 text-2xl font-bold text-gray-900">
-              Welcome Back
-            </h1>
 
             <p className="mt-2 text-sm text-gray-600">
               Sign in to continue to your BazarDor account.
