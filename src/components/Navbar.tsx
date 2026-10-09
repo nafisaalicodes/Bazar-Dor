@@ -51,7 +51,7 @@ export default function Navbar() {
     getData();
   }, []);
 
-  // Close the profile menu when clicking outside it.
+  
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
@@ -129,9 +129,9 @@ const handleSignOut = async () => {
 
   return (
     <header className="w-full border-b border-gray-200 bg-white">
-      {/* Top Section */}
+     
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
-        {/* Logo and Name */}
+      
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-green-600">
             <Image
@@ -151,7 +151,7 @@ const handleSignOut = async () => {
           </div>
         </Link>
 
-        {/* Authentication Section */}
+        
         <div className="flex items-center gap-2">
           {isPending ? (
             <div
@@ -160,7 +160,7 @@ const handleSignOut = async () => {
             />
           ) : user ? (
             <div className="relative" ref={profileMenuRef}>
-              {/* Only the profile picture is visible while signed in */}
+              
               <button
   type="button"
   onClick={() => setMenuOpen((open) => !open)}
@@ -192,7 +192,7 @@ const handleSignOut = async () => {
   </span>
 </button>
 
-              {/* Profile Dropdown */}
+              
               {menuOpen && (
                 <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
                   <div className="border-b border-gray-100 px-2 pb-3">
@@ -244,7 +244,7 @@ const handleSignOut = async () => {
         </div>
       </div>
 
-      {/* Category Navigation */}
+      
       <nav className="border-t border-gray-100">
         <div className="mx-auto flex max-w-7xl items-center gap-7 overflow-x-auto px-4">
           {categories.map((category) => (
@@ -265,7 +265,7 @@ const handleSignOut = async () => {
         </div>
       </nav>
 
-      {/* Price Ticker */}
+      
       <div className="w-full overflow-hidden border-t border-gray-100 bg-gray-50">
         <div className="flex w-max animate-marquee">
           {[...products, ...products].map((product, index) => (

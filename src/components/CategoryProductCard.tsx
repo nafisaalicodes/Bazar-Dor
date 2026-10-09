@@ -32,7 +32,7 @@ const CategoryProductCard = ({
       className="block"
     >
       <article className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-        {/* Product top */}
+     
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f2f4f0] text-3xl">
             {product.categoryIcon}
@@ -49,7 +49,7 @@ const CategoryProductCard = ({
           </div>
         </div>
 
-        {/* Price */}
+        
         <div className="mt-5 flex items-end justify-between">
           <div>
             <p className="text-xs text-gray-500">
@@ -64,7 +64,7 @@ const CategoryProductCard = ({
             </p>
           </div>
 
-          {/* Change badge */}
+         
           <span
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
               isUp

@@ -42,7 +42,7 @@ const ProductSummary = ({ product }: ProductSummaryProps) => {
   return (
     <section className="rounded-2xl bg-white p-5 shadow-sm md:p-7">
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        {/* Left */}
+        
         <div className="flex items-start gap-4">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#f2f4f0] text-4xl">
             {product.categoryIcon}
@@ -61,7 +61,7 @@ const ProductSummary = ({ product }: ProductSummaryProps) => {
               Based on {product.markets.length} local markets
             </p>
 
-            {/* Tags */}
+         
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
                 {categoryName}
@@ -78,7 +78,7 @@ const ProductSummary = ({ product }: ProductSummaryProps) => {
           </div>
         </div>
 
-        {/* Right - Today's Price */}
+       
         <div className="w-full rounded-2xl bg-[#f2f4f0] p-5 md:w-[230px]">
           <p className="text-xs font-semibold text-gray-500">
             TODAY&apos;S PRICE

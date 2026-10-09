@@ -93,7 +93,7 @@ export default function SignInPage() {
               Sign In
             </Link>
 
-            <p className="whitespace-nowrap mt-2 text-sm text-gray-500">
+            <p className=" mt-2 text-sm text-gray-500">
                Sign in to view detailed prices, compare markets and access your profile. 
             </p>
           </div>

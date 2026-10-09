@@ -27,7 +27,7 @@ const PriceSummary = ({ product }: PriceSummaryProps) => {
       </h2>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {/* Minimum */}
+      
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
             Minimum Price
@@ -42,7 +42,7 @@ const PriceSummary = ({ product }: PriceSummaryProps) => {
           </p>
         </div>
 
-        {/* Maximum */}
+       
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
             Maximum Price
@@ -57,7 +57,7 @@ const PriceSummary = ({ product }: PriceSummaryProps) => {
           </p>
         </div>
 
-        {/* Average */}
+        
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
             Average Price

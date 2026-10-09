@@ -15,12 +15,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
 
         <div className="mb-4 flex items-center gap-3">
-  {/* Product Icon */}
+ 
   <div className="text-4xl">
     {product.categoryIcon}
   </div>
 
-  {/* Product Name + Unit */}
+ 
   <div>
     <h3 className="text-lg font-bold text-gray-900">
       {productNames[product.nameBn] || product.nameBn}
@@ -32,7 +32,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   </div>
 </div>
 
-        {/* Price Row */}
+      
         <div className="mt-5 flex items-center justify-between">
 
           <div>
