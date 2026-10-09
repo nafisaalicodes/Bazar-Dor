@@ -91,28 +91,32 @@ export default function Navbar() {
       .replace(/\b\w/g, (letter) => letter.toUpperCase());
   };
 
-  const handleSignOut = async () => {
-    try {
-      setSigningOut(true);
 
-      const { error } = await authClient.signOut();
+const handleSignOut = async () => {
+  try {
+    setSigningOut(true);
 
-      if (error) {
-        toast.error(error.message || "Unable to sign out.");
-        return;
-      }
+    const { error } = await authClient.signOut();
 
-      setMenuOpen(false);
-      toast.success("Signed out successfully!");
-
-      router.push("/");
-      router.refresh();
-    } catch {
-      toast.error("Something went wrong while signing out.");
-    } finally {
-      setSigningOut(false);
+    if (error) {
+      toast.error(error.message || "Unable to sign out.");
+      return;
     }
-  };
+
+    setMenuOpen(false);
+
+    toast.success("Signed out successfully!");
+
+    router.replace("/signin");
+    router.refresh();
+  } catch {
+    toast.error("Something went wrong while signing out.");
+  } finally {
+    setSigningOut(false);
+  }
+};
+
+
 
   const today = new Intl.DateTimeFormat("en-US", {
     weekday: "long",

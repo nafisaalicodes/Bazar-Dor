@@ -40,6 +40,12 @@ const categoryNames: Record<string, string> = {
   mosla: "Spices",
 };
 
+const sortOptions = [
+  { value: "", label: "Default" },
+  { value: "low", label: "Price: Low to High" },
+  { value: "high", label: "Price: High to Low" },
+];
+
 const CategoryPage = async ({
   params,
   searchParams,
@@ -49,7 +55,6 @@ const CategoryPage = async ({
 
   const categoryKey = slug.toLowerCase();
 
-  // Check whether the category exists
   if (!validCategories.includes(categoryKey)) {
     notFound();
   }
@@ -64,25 +69,37 @@ const CategoryPage = async ({
 
   const data = await response.json();
 
-  const products: Product[] = data.products || data;
+  const products: Product[] = Array.isArray(data)
+    ? data
+    : data.products ?? [];
 
-  // Filter products by category
   const categoryProducts = products.filter(
-    (product) => product.category === categoryKey
+    (product) =>
+      product.category?.toLowerCase() === categoryKey
   );
 
-  // Sort products by today's price
+  // Ignore invalid sort values and use Default.
+  const activeSort =
+    sort === "low" || sort === "high" ? sort : "";
+
   const sortedProducts = [...categoryProducts];
 
-  if (sort === "low") {
-    sortedProducts.sort((a, b) => a.today - b.today);
-  }
-
-  if (sort === "high") {
-    sortedProducts.sort((a, b) => b.today - a.today);
+  if (activeSort === "low") {
+    sortedProducts.sort(
+      (a, b) => a.today - b.today
+    );
+  } else if (activeSort === "high") {
+    sortedProducts.sort(
+      (a, b) => b.today - a.today
+    );
   }
 
   const categoryName = categoryNames[categoryKey];
+
+  const selectedSort =
+    sortOptions.find(
+      (option) => option.value === activeSort
+    ) ?? sortOptions[0];
 
   return (
     <>
@@ -107,7 +124,7 @@ const CategoryPage = async ({
           </div>
 
           {/* Sorting */}
-          <div className="mb-6 flex flex-col gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
+          <div className="mb-6 flex flex-col gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-gray-500">
               Showing total{" "}
               <span className="font-semibold text-gray-800">
@@ -116,50 +133,84 @@ const CategoryPage = async ({
               products
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm font-medium text-gray-600">
-                Sort by:
-              </span>
+            <div className="flex items-center gap-3">
+              <label
+                htmlFor="sort-dropdown"
+                className="shrink-0 text-sm font-medium text-gray-600"
+              >
+                Sort by
+              </label>
 
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={`/category/${slug}`}
-                  className={`rounded-lg border px-4 py-1.5 text-sm ${
-                    !sort
-                      ? "border-gray-300 bg-gray-100 font-semibold text-gray-900"
-                      : "border-gray-200 bg-white text-gray-600"
-                  }`}
+              <details className="group relative">
+                <summary
+                  id="sort-dropdown"
+                  className="flex min-w-[205px] cursor-pointer list-none items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-700 shadow-sm transition hover:border-green-500 [&::-webkit-details-marker]:hidden"
                 >
-                  Default
-                </Link>
+                  <span className="font-medium">
+                    {selectedSort.label}
+                  </span>
 
-                <Link
-                  href={`/category/${slug}?sort=low`}
-                  className={`rounded-lg border px-4 py-1.5 text-sm ${
-                    sort === "low"
-                      ? "border-gray-300 bg-gray-100 font-semibold text-gray-900"
-                      : "border-gray-200 bg-white text-gray-600"
-                  }`}
-                >
-                  Price: Low to High
-                </Link>
+                  <svg
+                    className="h-4 w-4 shrink-0 text-gray-500 transition-transform group-open:rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </summary>
 
-                <Link
-                  href={`/category/${slug}?sort=high`}
-                  className={`rounded-lg border px-4 py-1.5 text-sm ${
-                    sort === "high"
-                      ? "border-gray-300 bg-gray-100 font-semibold text-gray-900"
-                      : "border-gray-200 bg-white text-gray-600"
-                  }`}
-                >
-                  Price: High to Low
-                </Link>
-              </div>
+                <div className="absolute right-0 z-50 mt-2 w-full min-w-[220px] overflow-hidden rounded-xl border border-gray-200 bg-white p-1.5 shadow-lg">
+                  {sortOptions.map((option) => (
+                    <Link
+                      key={option.value || "default"}
+                      href={
+                        option.value
+                          ? `/category/${categoryKey}?sort=${option.value}`
+                          : `/category/${categoryKey}`
+                      }
+                      scroll={false}
+                      className={`flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition hover:bg-green-50 hover:text-green-700 ${
+                        activeSort === option.value
+                          ? "bg-green-50 font-semibold text-green-700"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      <span>{option.label}</span>
+
+                      {activeSort === option.value && (
+                        <svg
+                          className="h-4 w-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m5 12 4 4L19 6"
+                          />
+                        </svg>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </details>
             </div>
           </div>
 
           {/* Products */}
-          {categoryProducts.length === 0 ? (
+          {sortedProducts.length === 0 ? (
             <div className="rounded-2xl border border-gray-200 bg-white px-6 py-16 text-center shadow-sm">
               <div className="text-5xl">🔍</div>
 
