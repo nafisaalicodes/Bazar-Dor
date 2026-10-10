@@ -126,6 +126,12 @@ const handleSignOut = async () => {
   }).format(new Date());
 
   const user = session?.user;
+  useEffect(() => {
+  if (session?.user) {
+    console.log("Session email:", session.user.email);
+    console.log("Session image:", session.user.image);
+  }
+}, [session]);
 
   return (
     <header className="w-full border-b border-gray-200 bg-white">
