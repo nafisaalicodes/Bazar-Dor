@@ -14,6 +14,13 @@ export const auth = betterAuth({
     client,
   }),
 
+  account: {
+    accountLinking: {
+      enabled: true,
+      updateUserInfoOnLink: true,
+    },
+  },
+
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
